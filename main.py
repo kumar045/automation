@@ -40,7 +40,7 @@ class TaskRequest(BaseModel):
     task: str
 
 async def run_agent(task: str):
-    agent = Agent(task=task, llm=llm, use_vision=True, planner_llm=planner_llm, planner_interval=4)
+    agent = Agent(task=task, llm=llm, use_vision=True)
     return await agent.run()
 
 @app.post("/run-task/")
