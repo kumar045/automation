@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash-lite",
+    model="gemini-2.0-flash",
     max_retries=5,
 )
 
