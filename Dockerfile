@@ -1,5 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:v1.33.0-jammy
-
+FROM mcr.microsoft.com/playwright/python:v1.50.0-noble
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
