@@ -34,4 +34,4 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1
 
 # Run FastAPI with xvfb-run to simulate an X server
-CMD ["xvfb-run", "--auto-servernum", "--server-args=-screen 0 1024x768x24", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
