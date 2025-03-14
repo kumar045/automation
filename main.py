@@ -23,19 +23,19 @@ app.add_middleware(
 )
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",
+    model="gemini-2.0-flash-lite",
     max_retries=5,
 )
 
 grog_llm = ChatGroq(
-    model_name="llama-3.2-3b-preview",
+    model_name="deepseek-r1-distill-qwen-32b",
 )
 
 class TaskRequest(BaseModel):
     task: str
 
 async def run_agent(task: str):
-    agent = Agent(task=task, llm=grog_llm)
+    agent = Agent(task=task, llm=llm)
     return await agent.run()
 
 @app.post("/run-task/")
