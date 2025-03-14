@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from browser_use import Agent
 from dotenv import load_dotenv
 import playwright
@@ -24,6 +25,10 @@ app.add_middleware(
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
     max_retries=5,
+)
+
+grog_llm = ChatGroq(
+    model_name="llama-3.2-90b-vision-preview",
 )
 
 class TaskRequest(BaseModel):
