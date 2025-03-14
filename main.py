@@ -28,7 +28,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
 grog_llm = ChatGroq(
-    model_name="deepseek-r1-distill-llama-70b",
+    model_name="qwen-qwq-32b",
 )
 
 class TaskRequest(BaseModel):
