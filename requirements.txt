@@ -1,5 +1,6 @@
 browser-use
 langchain_google_genai
+langchain_groq
 python-dotenv
 playwright
 fastapi
