@@ -33,7 +33,7 @@ class TaskRequest(BaseModel):
     task: str
 
 async def run_agent(task: str):
-    agent = Agent(task=task, llm=llm, browser_args=["--headless", "--no-sandbox", "--disable-gpu"])
+    agent = Agent(task=task, llm=llm)
     return await agent.run()
 
 @app.post("/run-task/")
