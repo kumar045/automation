@@ -1,6 +1,7 @@
 import os
 import asyncio
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from browser_use import Agent
@@ -9,6 +10,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
+
+# Enable CORS for all origins (*)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro",
@@ -29,4 +39,4 @@ async def run_agent(task: str):
 async def run_task(request: TaskRequest):
     result = await run_agent(request.task)
     return {"task": request.task, "result": result}
-  
+    
