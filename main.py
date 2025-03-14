@@ -31,11 +31,16 @@ grog_llm = ChatGroq(
     model_name="deepseek-r1-distill-qwen-32b",
 )
 
+planner_llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",
+    max_retries=5,
+)
+
 class TaskRequest(BaseModel):
     task: str
 
 async def run_agent(task: str):
-    agent = Agent(task=task, llm=llm)
+    agent = Agent(task=task, llm=llm, use_vision=True, planner_llm=planner_llm, planner_interval=4)
     return await agent.run()
 
 @app.post("/run-task/")
