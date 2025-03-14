@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from browser_use import Agent
 from dotenv import load_dotenv
+import playwright
 
 load_dotenv()
 
@@ -14,10 +15,10 @@ app = FastAPI()
 # Enable CORS for all origins (*)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 llm = ChatGoogleGenerativeAI(
@@ -32,7 +33,7 @@ class TaskRequest(BaseModel):
     task: str
 
 async def run_agent(task: str):
-    agent = Agent(task=task, llm=llm)
+    agent = Agent(task=task, llm=llm, browser_args=["--headless", "--no-sandbox", "--disable-gpu"])
     return await agent.run()
 
 @app.post("/run-task/")
