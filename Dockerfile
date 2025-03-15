@@ -7,6 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install Playwright and browsers
 RUN playwright install
 
+RUN apt-get update && apt-get install -y fonts-dejavu-core
+
 # Copy application code
 COPY . .
 
